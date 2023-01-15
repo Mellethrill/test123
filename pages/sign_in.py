@@ -6,7 +6,7 @@ from base.base_class import Base
 
 class Sign_in(Base):
 
-    url = "https://release-3-10-1.front.ctx.dev.lan/auth/signin"  # потом можно убрать привязку языка
+    url = "https://release-3-14-0.front.ctx.dev.lan/ru/auth/signin"  # потом можно убрать привязку языка
 
     def __init__(self, driver):
         super().__init__(driver)
@@ -23,8 +23,11 @@ class Sign_in(Base):
     toggle_password_button = "//span[@class='icon-eye-off togglePassword_2Ar5H toggle-password']"  # добавить id
     # sign_in_tab =
     # sign_up_tab =
+    user_name_id = "//a[@href='/ru/profile/edit']"
+    # user_name_id = "//*[@id='__layout']/div/div[1]/div/header/div/div[2]/ul/li[3]/a"
 
-    # Получатели/Добытчики:
+
+    # Получатели:
 
 
     def get_id(self):
@@ -54,19 +57,23 @@ class Sign_in(Base):
     #def get_sign_up_tab(self):
         #return WebDriverWait(self.driver, 10).until(EC.element_to_be_clickable((By.XPATH, self.sign_up_tab)))
 
+    def get_user_name_id(self):
+        return WebDriverWait(self.driver, 10).until(EC.element_to_be_clickable((By.XPATH, self.user_name_id)))
+
     # Действия:
+
 
     def input_id(self, id):
         self.get_id().send_keys(id)
-        print("Ввод ID - ОК")
+        print("Ввод ID - ОК.")
 
     def input_password(self, password):
         self.get_password().send_keys(password)
-        print("Ввод пароля - ОК")
+        print("Ввод пароля - ОК.")
 
     def click_sign_in_button(self):
         self.get_sign_in_button().click()
-        print("Нажатия кнопки авторизации - ОК")
+        print("Нажатие кнопки авторизации - ОК.")
 
     # тут будет ещё много вариаций взаимодействия с элементами
 
@@ -78,5 +85,5 @@ class Sign_in(Base):
         self.input_id("piggy")
         self.input_password("33H9w8}HPk")
         self.click_sign_in_button()
+        self.assert_word(self.get_user_name_id(), "piggy")
 
-    

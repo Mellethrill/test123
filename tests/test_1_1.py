@@ -4,7 +4,6 @@ import time
 from pages.sign_in import Sign_in
 
 
-
 def test_authorization():
     driver = webdriver.Chrome(executable_path="C:\\Users\\Пользователь\\PycharmProjects\\resource\\chromedriver.exe")
     print("Начало теста")
@@ -14,3 +13,4 @@ def test_authorization():
 
     print("Конец теста")
     time.sleep(7)
+    driver.quit()
